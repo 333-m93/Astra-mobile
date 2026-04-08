@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#08131b">
+  <title>Astra - Cyber defense mobile</title>
+  <link rel="icon" href="Logo_1.png">
+  <link rel="apple-touch-icon" href="Logo_1.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="status-bar">
+      <div class="status-time">9:41</div>
+      <div class="status-icons" aria-hidden="true">
+        <span class="signal"><i></i><i></i><i></i><i></i></span>
+        <span class="wifi"></span>
+        <span class="battery"></span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="brand-row">
+        <img class="astra-wordmark hero-wordmark" src="Logo_2.png" alt="Logo Astra">
+      </div>
+      <h1 class="hero-heading">La cybersécurité au quotidien</h1>
+      <p>Conseils, quiz, anti-phishing, bonnes pratiques et réflexes utiles. Tout ce qu’il faut pour naviguer plus sereinement.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-goto="quiz">Commencer un quiz</button>
+        <button class="btn btn-secondary" data-goto="conseils">Voir les conseils</button>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="screen active" data-screen="accueil">
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span class="stat-icon">📘</span>
+            <strong id="stat-tips">0</strong>
+            <span>Conseils lus</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon">🧠</span>
+            <strong id="stat-quizzes">0</strong>
+            <span>Quiz complétés</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon">⭐</span>
+            <strong id="stat-favs">0</strong>
+            <span>Favoris</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon">🛡️</span>
+            <strong id="stat-score">0%</strong>
+            <span>Score moyen</span>
+          </article>
+        </div>
+
+        <section class="section">
+          <div class="section-head">
+            <h2><span>💡</span> Conseil du jour</h2>
+            <button class="link-btn" data-goto="conseils">Voir tout</button>
+          </div>
+          <article class="hero-card" id="daily-tip"></article>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2><span>🔥</span> Acces rapide</h2>
+          </div>
+          <div class="quick-grid">
+            <button class="quick-card" data-goto="quiz">
+              <span>Quiz rapide</span>
+              <small>Teste tes reflexes</small>
+            </button>
+            <button class="quick-card" data-goto="conseils">
+              <span>Anti-phishing</span>
+              <small>Repere les arnaques</small>
+            </button>
+            <button class="quick-card" data-goto="outils">
+              <span>Urgence</span>
+              <small>Mode incident</small>
+            </button>
+            <button class="quick-card" data-goto="favoris">
+              <span>Favoris</span>
+              <small>Retrouve tes contenus</small>
+            </button>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2><span>📈</span> Parcours</h2>
+          </div>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Niveau de vigilance</span>
+              <strong id="vigilance-label">Intermediaire</strong>
+            </div>
+            <div class="progress-bar"><span id="vigilance-bar"></span></div>
+            <p id="vigilance-text">Continue avec les conseils et les quiz pour passer au niveau suivant.</p>
+          </div>
+        </section>
+      </div>
+
+      <div class="screen" data-screen="conseils">
+        <section class="section">
+          <div class="section-head">
+            <h2><span>📚</span> Bibliotheque de conseils</h2>
+            <button class="link-btn" data-goto="favoris">Favoris</button>
+          </div>
+          <div class="search-row">
+            <input id="tip-search" type="search" placeholder="Rechercher un conseil">
+          </div>
+          <div class="chip-row" id="tip-filters"></div>
+          <div class="card-list" id="tips-list"></div>
+        </section>
+      </div>
+
+      <div class="screen" data-screen="quiz">
+        <section class="section">
+          <div class="section-head">
+            <h2><span>🧠</span> Quiz cybersécurité</h2>
+            <button class="link-btn" id="quiz-reset-top">Reinitialiser</button>
+          </div>
+          <div class="chip-row" id="quiz-tabs"></div>
+
+          <article class="quiz-hero" id="quiz-start-panel">
+            <img class="quiz-badge-logo" src="Logo_1.png" alt="" aria-hidden="true">
+            <h3 id="quiz-title"></h3>
+            <p id="quiz-summary"></p>
+            <div class="quiz-meta" id="quiz-meta"></div>
+            <button class="btn btn-primary" id="start-quiz">Demarrer le quiz</button>
+          </article>
+
+          <article class="quiz-panel" id="quiz-panel" hidden>
+            <div class="quiz-topline">
+              <span id="quiz-progress">Question 1 / 1</span>
+              <span class="chip" id="quiz-score">Score 0</span>
+            </div>
+            <h3 id="quiz-question"></h3>
+            <div class="answer-list" id="answer-list"></div>
+            <p class="quiz-feedback" id="quiz-feedback"></p>
+            <div class="quiz-actions">
+              <button class="btn btn-primary" id="next-question" hidden>Question suivante</button>
+              <button class="btn btn-secondary" id="restart-quiz" hidden>Rejouer</button>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <div class="screen" data-screen="favoris">
+        <section class="section">
+          <div class="section-head">
+            <h2><span>⭐</span> Favoris</h2>
+            <button class="link-btn" data-goto="conseils">Explorer les conseils</button>
+          </div>
+          <div class="card-list" id="favorites-list"></div>
+        </section>
+      </div>
+
+      <div class="screen" data-screen="outils">
+        <section class="section">
+          <div class="section-head">
+            <h2><span>🧰</span> Mode urgence</h2>
+          </div>
+          <article class="tool-card">
+            <h3>Si tu penses etre victime d'une attaque</h3>
+            <div class="checklist" id="incident-checklist"></div>
+            <div class="tool-actions">
+              <button class="btn btn-primary" id="mark-incident-done">Tout cocher</button>
+              <button class="btn btn-secondary" id="reset-incident">Remettre a zero</button>
+            </div>
+          </article>
+
+          <section class="section">
+            <div class="section-head">
+              <h2><span>🔎</span> Outils utiles</h2>
+            </div>
+            <div class="utility-grid">
+              <button class="utility-card" data-action="password">Verifier mon mot de passe</button>
+              <button class="utility-card" data-action="phishing">Tester un message suspect</button>
+              <button class="utility-card" data-action="backup">Construire mon plan de sauvegarde</button>
+              <button class="utility-card" data-action="device">Audit rapide appareil</button>
+            </div>
+          </section>
+        </section>
+      </div>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Navigation principale">
+      <button class="nav-btn active" data-goto="accueil"><span>⌂</span><small>Accueil</small></button>
+      <button class="nav-btn" data-goto="conseils"><span>▤</span><small>Conseils</small></button>
+      <button class="nav-btn" data-goto="quiz"><span>◌</span><small>Quiz</small></button>
+      <button class="nav-btn" data-goto="outils"><span>⚙</span><small>Outils</small></button>
+    </nav>
+
+    <div class="modal" id="tip-modal" aria-hidden="true">
+      <div class="modal-backdrop" data-close="modal"></div>
+      <article class="modal-card">
+        <button class="modal-close" data-close="modal">×</button>
+        <div class="modal-kicker" id="tip-modal-category"></div>
+        <h3 id="tip-modal-title"></h3>
+        <p id="tip-modal-body"></p>
+        <div class="modal-notes" id="tip-modal-notes"></div>
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="tip-modal-favorite">Ajouter aux favoris</button>
+          <button class="btn btn-secondary" data-close="modal">Fermer</button>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
